@@ -42,8 +42,10 @@ class Conversion:
 
 
 class Menu(Conversion):
-    imageFilePath = ''
-    endPath = ''
+
+    def __init__(self):
+        self.imageFilePath = None
+        self.endPath = None
 
     def getImagePath(self):
         path = input("Please enter the path for the image file you'd like to convert: ").strip().replace('  ','')
