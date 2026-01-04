@@ -1,4 +1,5 @@
 from PIL import Image
+import pyperclip
 
 # remember: 0 = black, white = 1 in the pixelation workspace
 
@@ -24,6 +25,7 @@ class Conversion:
         with open(file=path, mode = 'w') as f:
             for i in range(len(convertedImage)):
                 f.write(str(convertedImage[i]))
+        pyperclip.copy(convertedImage)
 
 
     def sizeCheck(self,image): #set size to be within site's limits
@@ -33,12 +35,12 @@ class Conversion:
                 original.thumbnail((255,255)) #if over size, use built-in to scale while keeping aspect ratio
             original.save(image)
             original.close()
-        return None #not sure if necessary? I wonder if I could just return the size to reference in the next method...
+        return  #not sure if necessary? I wonder if I could just return the size to reference in the next method...
 
     def showSize(self,image):
         with Image.open(image) as reference:
             x,y = reference.size
-        return f"Your image is {x} pixels wide and {y} pixels tall"
+        return f"\nYour image is {x} pixels wide and {y} pixels tall. The binary has been copied to your clipboard for convenience!"
 
 
 class Menu(Conversion):
@@ -52,7 +54,7 @@ class Menu(Conversion):
         return path
 
     def getEndPath(self):
-        userEndPath = input(r"Where would you like to save the converted file? Please include a name for the file such as 'C:\Desktop\output.txt'").strip().replace('  ','')
+        userEndPath = input(r"Where would you like to save the converted file? Please include a name for the file such as 'C:\Desktop\output.txt': ").strip().replace('  ','')
         return userEndPath
 
     def convert(self):
@@ -72,6 +74,7 @@ class Menu(Conversion):
 
 
 
+
 menu = Menu()
 print("Welcome to the binary conversion tool! Type 'Convert' to convert a file or 'quit' to exit")
 menu.convert()
@@ -80,7 +83,7 @@ menu.convert()
 '''for column in range(photoSize):
         rawPixel.append(f"Column Value: {column}")
         for row in range(photoSize):
-            rawPixel.append(f"row value{row}'''         #loop logic test
+            rawPixel.append(f"row value{row}''' #loop logic test
 
 
 
