@@ -76,7 +76,7 @@ class Menu(Conversion):
 
 
 menu = Menu()
-print("Welcome to the binary conversion tool! Type 'Convert' to convert a file or 'quit' to exit")
+print("Welcome to the binary conversion tool!")
 menu.convert()
 
 
